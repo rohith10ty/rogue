@@ -16,7 +16,7 @@ export const ProductCard = ({ product, onQuickView }) => {
   const images = product.images || [];
   const currentImg = images[activeImageIdx] || images[0] || {};
 
-  // Slowly showcase all item angles side by side on hover (no zoom)
+  // Smoothly cycle through item angles with slide-in transition on hover
   React.useEffect(() => {
     if (!isHovered || images.length <= 1) {
       setActiveImageIdx(0);
@@ -25,7 +25,7 @@ export const ProductCard = ({ product, onQuickView }) => {
 
     const timer = setInterval(() => {
       setActiveImageIdx((prev) => (prev + 1) % images.length);
-    }, 1250);
+    }, 1400);
 
     return () => clearInterval(timer);
   }, [isHovered, images.length]);
@@ -64,19 +64,28 @@ export const ProductCard = ({ product, onQuickView }) => {
         setActiveImageIdx(0);
       }}
     >
-      {/* Visual Image Area (Compact 3:4 Aspect Ratio, no zoom on hover, smooth angle showcase) */}
+      {/* Visual Image Area (Compact 3:4 Aspect Ratio, Smooth Slide-in on hover) */}
       <div 
         ref={imageRef}
         onClick={() => onQuickView(product, activeImageIdx)}
         className="relative aspect-[3/4] max-h-[220px] sm:max-h-[240px] md:max-h-[250px] w-full overflow-hidden bg-[#F2EFEB] dark:bg-[#1C1C1C] cursor-pointer flex items-center justify-center"
       >
-        <img
-          key={currentImg?.url}
-          src={currentImg?.url}
-          alt={`${product.name} angle`}
-          className="w-full h-full object-cover object-center transition-opacity duration-300 animate-fadeIn"
-          loading="lazy"
-        />
+        {/* Horizontal sliding track */}
+        <div 
+          className="flex w-full h-full transition-transform duration-500 ease-out will-change-transform"
+          style={{ transform: `translateX(-${activeImageIdx * 100}%)` }}
+        >
+          {images.map((img, i) => (
+            <div key={i} className="w-full h-full flex-shrink-0">
+              <img
+                src={img.url}
+                alt={`${product.name} angle ${i + 1}`}
+                className="w-full h-full object-cover object-center pointer-events-none"
+                loading={i === 0 ? "eager" : "lazy"}
+              />
+            </div>
+          ))}
+        </div>
 
         {/* Subtle angle indicator pills on hover when multi-image */}
         {isHovered && images.length > 1 && (

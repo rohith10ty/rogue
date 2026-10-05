@@ -70,7 +70,7 @@
 
 .hc-header h2 {
   font-family: var(--font-serif);
-  font-size: clamp(26px, 2.8vw, 38px);
+  font-size: clamp(24px, 2.8vw, 38px);
   font-weight: 400;
   margin: 10px 0 6px;
   line-height: 1.2;
@@ -100,11 +100,12 @@
 
 .hc-viewport {
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: visible;
   scrollbar-width: none;
   touch-action: pan-x pan-y;
   margin-top: 28px;
   padding-top: 16px;
+  padding-inline: 12px;
 }
 
 .hc-viewport::-webkit-scrollbar {
@@ -116,21 +117,21 @@
   touch-action: pan-y;
 }
 
-/* Generously spaced rack width across both desktop and mobile */
+/* Rack sits cleanly inside the border guidelines */
 .hc-rack {
   position: relative;
-  width: min(calc(100% - 64px), 840px);
+  width: min(calc(100% - 140px), 760px);
   margin-inline: auto;
   padding-top: 0;
   height: calc((var(--garment-height) + var(--suspension-length)) * 1.3 + 95px);
 }
 
-/* Single Clean Horizontal Rod */
+/* Single Clean Horizontal Rod (Completely inside boundaries) */
 .hc-rail {
   position: absolute;
   top: 0;
-  left: -20px;
-  right: -20px;
+  left: 0;
+  right: 0;
   height: 3px;
   background: linear-gradient(180deg, #444 0%, #1a1a1a 70%, #000 100%);
   border-radius: 2px;
@@ -304,7 +305,7 @@
   top: 265px;
   left: 50%;
   transform: translateX(-50%);
-  width: min(calc(100% - 32px), 800px);
+  width: min(calc(100% - 32px), 780px);
   display: grid;
   grid-template-columns: 210px 1fr 210px;
   column-gap: 20px;
@@ -462,9 +463,9 @@
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .hc-rack { width: min(calc(100% - 48px), 680px); }
+  .hc-rack { width: min(calc(100% - 64px), 640px); }
   .hc-focused-info {
-    width: min(calc(100% - 32px), 700px);
+    width: min(calc(100% - 32px), 680px);
     grid-template-columns: 180px 1fr 180px;
     column-gap: 14px;
   }
@@ -473,30 +474,44 @@
 
 @media (max-width: 767px) {
   .hanger-collection {
-    --garment-height: clamp(120px, 36vw, 175px);
-    --suspension-length: 16px;
+    --garment-height: clamp(115px, 32vw, 155px);
+    --suspension-length: 14px;
     min-height: 520px;
     scroll-margin-top: 68px;
+    overflow: hidden;
   }
-  .hanger-collection::before { inset-inline: 20px; }
-  .hc-header { padding: 28px 24px 0; }
+  .hanger-collection::before { inset-inline: 16px; }
+  .hc-header { padding: 24px 20px 0; }
+  .hc-header h2 { font-size: 24px; }
   .hc-edition { display: none; }
-  .hanger-collection .hc-viewport { margin-top: 24px; overflow: clip; touch-action: pan-y; }
-  .hc-rack { width: min(calc(100% - 24px), 410px); margin-inline: auto; height: calc((var(--garment-height) + var(--suspension-length)) * 1.65 + 32px); }
-  .hc-rail { left: -10px; right: -10px; }
+  .hanger-collection .hc-viewport {
+    margin-top: 20px;
+    overflow: visible;
+    padding-inline: 10px;
+    touch-action: pan-y;
+  }
+  .hc-rack {
+    width: min(calc(100% - 44px), 330px);
+    margin-inline: auto;
+    height: calc((var(--garment-height) + var(--suspension-length)) * 1.65 + 32px);
+  }
+  .hc-rail {
+    left: 0;
+    right: 0;
+  }
   .hc-label { display: none; }
-  .hc-slot-number { top: calc(var(--garment-height) + var(--suspension-length) + 24px); font-size: 9px; }
+  .hc-slot-number { top: calc(var(--garment-height) + var(--suspension-length) + 22px); font-size: 9px; }
   .hc-mobile-selection {
     display: flex;
     min-height: 44px;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: -32px 20px 16px;
+    margin: -28px 16px 16px;
   }
-  .hc-mobile-selection > span { font-family: var(--font-serif); font-size: 16px; }
+  .hc-mobile-selection > span { font-family: var(--font-serif); font-size: 15px; }
   .hc-mobile-selection small { font-size: 10px; color: var(--hc-muted); margin-top: 4px; }
-  .hc-footnote { margin-inline: 24px; font-size: 8px; }
+  .hc-footnote { margin-inline: 20px; font-size: 8px; }
   .hc-footnote > :last-child { max-width: 110px; text-align: right; }
   .hc-focused-info {
     position: relative;
@@ -504,12 +519,12 @@
     left: auto;
     transform: none;
     width: auto;
-    margin: 12px 24px 20px;
+    margin: 10px 16px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 14px;
+    gap: 12px;
   }
   .hc-focused-name {
     text-align: center;
@@ -522,13 +537,25 @@
     text-align: center;
     padding-left: 0;
     width: 100%;
-    max-width: 260px;
+    max-width: 250px;
   }
-  .hc-focused-info h3 { font-size: 20px; }
+  .hc-focused-info h3 { font-size: 19px; }
   .hc-focused-info .hc-eyebrow { font-size: 9px; }
   .hc-actions { gap: 8px; font-size: 9px; }
-  .hc-actions button { min-height: 40px; }
-  .hc-close { top: 16px; right: 20px; min-height: 38px; padding: 6px 12px; }
-  .has-focus .hc-header { min-height: 64px; padding-top: 28px; }
+  .hc-actions button { min-height: 38px; }
+  .hc-close { top: 14px; right: 16px; min-height: 36px; padding: 5px 10px; font-size: 10px; }
+  .has-focus .hc-header { min-height: 58px; padding-top: 24px; }
   .has-focus .hc-header h2, .has-focus .hc-header .hc-hint { display: none; }
+}
+
+@media (max-width: 360px) {
+  .hc-rack {
+    width: min(calc(100% - 36px), 290px);
+  }
+  .hanger-collection {
+    --garment-height: 110px;
+  }
+  .hc-focused-info h3 {
+    font-size: 17px;
+  }
 }

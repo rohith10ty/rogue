@@ -25,7 +25,7 @@ export const LandingPage = ({ onQuickView, onNavigate }) => {
     <div className="min-h-screen">
       
       {/* 1. HERO SECTION (5-Photo Editorial Collage Mosaic) */}
-      <section className="relative h-screen min-h-[580px] max-w-[1400px] mx-auto pt-16 md:pt-20 lg:pt-22 pb-0 flex flex-col justify-between border-x border-[#1A1A1A]/10 dark:border-[#F9F8F6]/10 overflow-hidden">
+      <section className="relative min-h-[620px] md:h-screen max-w-[1400px] mx-auto pt-22 sm:pt-26 md:pt-20 lg:pt-22 pb-0 flex flex-col justify-between border-x border-[#1A1A1A]/10 dark:border-[#F9F8F6]/10 overflow-hidden">
         
         {/* Subtle Architectural Lines in Background */}
         <div className="absolute inset-0 pointer-events-none z-0 flex justify-between px-6 md:px-12" aria-hidden="true">
@@ -36,7 +36,7 @@ export const LandingPage = ({ onQuickView, onNavigate }) => {
         </div>
 
         {/* Hero Content: flex-1 min-h-0 fills available vertical height */}
-        <div className="relative z-10 px-6 md:px-12 py-1 md:py-2 flex-1 min-h-0 flex items-center">
+        <div className="relative z-10 px-5 sm:px-6 md:px-12 py-2 md:py-2 flex-1 min-h-0 flex items-center">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center w-full">
             
             {/* Left Column: 2 Words Per Line, Compact & Clean (6 Cols) */}
@@ -51,7 +51,7 @@ export const LandingPage = ({ onQuickView, onNavigate }) => {
               </div>
 
               {/* Headline with 2 words per line */}
-              <h1 className="font-serif text-3xl sm:text-4xl md:text-[2.8rem] lg:text-[3.2rem] xl:text-[3.6rem] font-normal leading-[1.02] tracking-tight text-[#1A1A1A] dark:text-[#F9F8F6]">
+              <h1 className="font-serif text-2xl sm:text-3xl md:text-[2.6rem] lg:text-[3.2rem] xl:text-[3.6rem] font-normal leading-[1.06] tracking-tight text-[#1A1A1A] dark:text-[#F9F8F6]">
                 Transform the<br />
                 way your<br />
                 silhouette speaks

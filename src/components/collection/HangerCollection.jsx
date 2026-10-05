@@ -120,17 +120,17 @@ export function HangerCollection({ onQuickView }) {
   const getGarmentOffset = (index) => {
     if (focused === index) return offset;
     if (focused !== null) {
-      const shift = compact ? 30 : 48;
+      const shift = compact ? 22 : 40;
       return index < focused ? -shift : shift;
     }
     if (active !== null) {
       if (active === index) {
-        if (compact) return index === 0 ? 12 : index === hangerProducts.length - 1 ? -12 : 0;
-        return 0;
+        if (compact) return index === 0 ? 18 : index === hangerProducts.length - 1 ? -22 : 0;
+        return index === 0 ? 12 : index === hangerProducts.length - 1 ? -16 : 0;
       }
       const dist = Math.abs(index - active);
       const direction = index < active ? -1 : 1;
-      const moveAmount = compact ? (dist === 1 ? 22 : 12) : (dist === 1 ? 32 : 16);
+      const moveAmount = compact ? (dist === 1 ? 16 : 8) : (dist === 1 ? 28 : 14);
       return direction * moveAmount;
     }
     return 0;
